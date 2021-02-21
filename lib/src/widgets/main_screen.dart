@@ -12,7 +12,7 @@ class MainScreen extends StatelessWidget {
   Widget _renderMobile(BuildContext context, SpaceNewsState state) {
     if (state is SpaceNewsInitial) {
       BlocProvider.of<SpaceNewsBloc>(context).add(
-        const SpaceNewsRequest(page: 0),
+         const SpaceNewsRequest(page: 0),
       );
     }
     if (state is SpaceNewsProgress) {
@@ -24,8 +24,21 @@ class MainScreen extends StatelessWidget {
       final List<SpaceNews> spaceNews = state.spaceNews;
       return Center(
         child: ListView.builder(
-          itemCount: spaceNews.length,
+          itemCount: spaceNews.length + 1,
           itemBuilder: (BuildContext context, int index) {
+            if (index == spaceNews.length) {
+              return Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: MaterialButton(
+                  onPressed: (){
+                    BlocProvider.of<SpaceNewsBloc>(context).add(SpaceNewsRequest(page: state.page, spaceNews: state.spaceNews));
+                  },
+                  color: Colors.blue,
+                  textColor: Colors.white,
+                  child: const Text('Load more'),
+                ),
+              );
+            }
             return CardSpace(
               imageUrl: spaceNews[index].imageUrl,
               title: spaceNews[index].title,
@@ -77,8 +90,21 @@ class MainScreen extends StatelessWidget {
                 //   itemExtent: 400,
                 // ),
                 child: ListView.builder(
-                  itemCount: spaceNews.length,
+                  itemCount: spaceNews.length + 1,
                   itemBuilder: (BuildContext context, int index) {
+                    if (index == spaceNews.length) {
+                      return Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: MaterialButton(
+                          onPressed: (){
+                            BlocProvider.of<SpaceNewsBloc>(context).add(SpaceNewsRequest(page: state.page, spaceNews: state.spaceNews));
+                          },
+                          color: Colors.blue,
+                          textColor: Colors.white,
+                          child: const Text('Load more'),
+                        ),
+                      );
+                    }
                     return CardSpace(
                       imageUrl: spaceNews[index].imageUrl,
                       title: spaceNews[index].title,

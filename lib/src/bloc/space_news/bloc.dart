@@ -18,7 +18,14 @@ class SpaceNewsBloc extends Bloc<SpaceNewsEvent, SpaceNewsState> {
       yield SpaceNewsProgress();
       try {
         final List<SpaceNews> spaceNews = await spaceNewsRepository.getNews(event.page);
-        yield SpaceNewsSuccess(spaceNews: spaceNews);
+        if (event.page == 0) {
+          yield SpaceNewsSuccess(spaceNews: spaceNews, page: event.page + 1);
+        } else {
+          if (event.spaceNews.isNotEmpty) {
+            event.spaceNews.addAll(spaceNews);
+            yield SpaceNewsSuccess(spaceNews: event.spaceNews, page: event.page + 1);
+          }
+        }
       } catch (err) {
         yield SpaceNewsFailure();
       }

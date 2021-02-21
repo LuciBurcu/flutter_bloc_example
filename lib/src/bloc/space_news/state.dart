@@ -14,13 +14,13 @@ class SpaceNewsInitial extends SpaceNewsState {}
 class SpaceNewsProgress extends SpaceNewsState {}
 
 class SpaceNewsSuccess extends SpaceNewsState {
-  const SpaceNewsSuccess({@required this.spaceNews}) : assert(spaceNews != null);
+  const SpaceNewsSuccess({@required this.spaceNews, @required this.page}) : assert(spaceNews != null);
 
   final List<SpaceNews> spaceNews;
+  final int page;
 
   @override
   List<Object> get props => <Object>[spaceNews];
 }
 
 class SpaceNewsFailure extends SpaceNewsState {}
-
