@@ -12,7 +12,7 @@ class MainScreen extends StatelessWidget {
   Widget _renderMobile(BuildContext context, SpaceNewsState state) {
     if (state is SpaceNewsInitial) {
       BlocProvider.of<SpaceNewsBloc>(context).add(
-         const SpaceNewsRequest(page: 0),
+        const SpaceNewsRequest(page: 0),
       );
     }
     if (state is SpaceNewsProgress) {
@@ -30,8 +30,9 @@ class MainScreen extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: MaterialButton(
-                  onPressed: (){
-                    BlocProvider.of<SpaceNewsBloc>(context).add(SpaceNewsRequest(page: state.page, spaceNews: state.spaceNews));
+                  onPressed: () {
+                    BlocProvider.of<SpaceNewsBloc>(context)
+                        .add(SpaceNewsRequest(page: state.page, spaceNews: state.spaceNews));
                   },
                   color: Colors.blue,
                   textColor: Colors.white,
@@ -78,17 +79,6 @@ class MainScreen extends StatelessWidget {
           children: <Widget>[
             Expanded(
               child: Center(
-                // child: ListWheelScrollView(
-                //   children: spaceNews
-                //       .map((SpaceNews e) => CardSpace(
-                //             title: e.title,
-                //             imageUrl: e.imageUrl,
-                //             publishedAt: e.publishedAt,
-                //             summary: e.summary,
-                //           ))
-                //       .toList(),
-                //   itemExtent: 400,
-                // ),
                 child: ListView.builder(
                   itemCount: spaceNews.length + 1,
                   itemBuilder: (BuildContext context, int index) {
@@ -96,8 +86,9 @@ class MainScreen extends StatelessWidget {
                       return Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: MaterialButton(
-                          onPressed: (){
-                            BlocProvider.of<SpaceNewsBloc>(context).add(SpaceNewsRequest(page: state.page, spaceNews: state.spaceNews));
+                          onPressed: () {
+                            BlocProvider.of<SpaceNewsBloc>(context)
+                                .add(SpaceNewsRequest(page: state.page, spaceNews: state.spaceNews));
                           },
                           color: Colors.blue,
                           textColor: Colors.white,

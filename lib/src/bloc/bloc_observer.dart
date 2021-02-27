@@ -8,7 +8,7 @@ class AppBlocObserver extends BlocObserver {
   }
 
   @override
-  onTransition(Bloc bloc, Transition transition) {
+  void onTransition(Bloc bloc, Transition transition) {
     print('onTransition $transition');
     super.onTransition(bloc, transition);
   }
